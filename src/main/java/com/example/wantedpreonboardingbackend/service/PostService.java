@@ -32,6 +32,12 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
+    public void deletePost(Long postId) {
+        Post post = findPostById(postId);
+
+        postRepository.delete(post);
+    }
+
     private Post findPostById(Long postId) {
         return postRepository.findById(postId).orElseThrow(
                 () -> new NullPointerException("존재하지 않는 공고글입니다.")
