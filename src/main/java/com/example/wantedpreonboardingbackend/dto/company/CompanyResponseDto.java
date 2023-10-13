@@ -1,4 +1,4 @@
-package com.example.wantedpreonboardingbackend.dto;
+package com.example.wantedpreonboardingbackend.dto.company;
 
 import com.example.wantedpreonboardingbackend.entity.Company;
 import lombok.Getter;

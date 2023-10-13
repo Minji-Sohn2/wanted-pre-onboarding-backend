@@ -1,6 +1,6 @@
 package com.example.wantedpreonboardingbackend.service;
 
-import com.example.wantedpreonboardingbackend.dto.CompanyResponseDto;
+import com.example.wantedpreonboardingbackend.dto.company.CompanyResponseDto;
 import com.example.wantedpreonboardingbackend.dto.company.CompanyRequestDto;
 import com.example.wantedpreonboardingbackend.entity.Company;
 import com.example.wantedpreonboardingbackend.repository.CompanyRepository;
