@@ -1,10 +1,10 @@
-package com.example.wantedpreonboardingbackend.dto;
+package com.example.wantedpreonboardingbackend.dto.post;
 
 import lombok.Getter;
 
 @Getter
 public class PostRequestDto {
-    private String companyId;
+    private Long companyId;
     private String position;
     private Long reward;
     private String details;

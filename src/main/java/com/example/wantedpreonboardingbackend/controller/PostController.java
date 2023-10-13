@@ -1,9 +1,9 @@
 package com.example.wantedpreonboardingbackend.controller;
 
 import com.example.wantedpreonboardingbackend.dto.ApiResponseDto;
-import com.example.wantedpreonboardingbackend.dto.PostRequestDto;
-import com.example.wantedpreonboardingbackend.dto.PostResponseDto;
-import com.example.wantedpreonboardingbackend.dto.PostUpdateDto;
+import com.example.wantedpreonboardingbackend.dto.post.PostRequestDto;
+import com.example.wantedpreonboardingbackend.dto.post.PostResponseDto;
+import com.example.wantedpreonboardingbackend.dto.post.PostUpdateDto;
 import com.example.wantedpreonboardingbackend.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,10 +18,10 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping
-    public ResponseEntity<PostResponseDto> createPost (@RequestBody PostRequestDto postRequestDto) {
+    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {
         PostResponseDto result = postService.createPost(postRequestDto);
 
-        return ResponseEntity.status(201).body(result);
+        return ResponseEntity.status(HttpStatus.CREATED.value()).body(result);
     }
 
     @PutMapping("/{postId}")

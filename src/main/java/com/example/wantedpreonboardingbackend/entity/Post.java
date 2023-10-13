@@ -1,7 +1,7 @@
 package com.example.wantedpreonboardingbackend.entity;
 
-import com.example.wantedpreonboardingbackend.dto.PostRequestDto;
-import com.example.wantedpreonboardingbackend.dto.PostUpdateDto;
+import com.example.wantedpreonboardingbackend.dto.post.PostRequestDto;
+import com.example.wantedpreonboardingbackend.dto.post.PostUpdateDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,9 +17,6 @@ public class Post {
     private Long id;
 
     @Column(nullable = false)
-    private String companyId;
-
-    @Column(nullable = false)
     private String position;
 
     private Long reward;
@@ -29,13 +26,23 @@ public class Post {
 
     private String skills;
 
+    /* 연관관계 */
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     /* 생성자 */
     public Post(PostRequestDto postRequestDto) {
-        this.companyId = postRequestDto.getCompanyId();
         this.position = postRequestDto.getPosition();
         this.reward = postRequestDto.getReward();
         this.details = postRequestDto.getDetails();
         this.skills = postRequestDto.getSkills();
+    }
+
+    /* 연관관계 편의 메서드 */
+    public void setCompany(Company company) {
+        this.company = company;
+        company.getPosts().add(this);
     }
 
     /* 서비스 메서드 */
