@@ -1,8 +1,6 @@
 package com.example.wantedpreonboardingbackend.service;
 
-import com.example.wantedpreonboardingbackend.dto.post.PostRequestDto;
-import com.example.wantedpreonboardingbackend.dto.post.PostResponseDto;
-import com.example.wantedpreonboardingbackend.dto.post.PostUpdateDto;
+import com.example.wantedpreonboardingbackend.dto.post.*;
 import com.example.wantedpreonboardingbackend.entity.Company;
 import com.example.wantedpreonboardingbackend.entity.Post;
 import com.example.wantedpreonboardingbackend.repository.CompanyRepository;
@@ -11,12 +9,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
 
     private final PostRepository postRepository;
     private final CompanyRepository companyRepository;
+
+    public PostListResponseDto getPosts() {
+        List<PostCompanyDto> postList = postRepository.findAll().stream()
+                .map(PostCompanyDto::new).toList();
+
+        return new PostListResponseDto(postList);
+    }
 
     public PostResponseDto createPost(PostRequestDto postRequestDto) {
         Post post = new Post(postRequestDto);

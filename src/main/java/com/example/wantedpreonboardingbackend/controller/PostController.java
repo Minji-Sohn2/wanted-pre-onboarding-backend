@@ -1,6 +1,7 @@
 package com.example.wantedpreonboardingbackend.controller;
 
 import com.example.wantedpreonboardingbackend.dto.ApiResponseDto;
+import com.example.wantedpreonboardingbackend.dto.post.PostListResponseDto;
 import com.example.wantedpreonboardingbackend.dto.post.PostRequestDto;
 import com.example.wantedpreonboardingbackend.dto.post.PostResponseDto;
 import com.example.wantedpreonboardingbackend.dto.post.PostUpdateDto;
@@ -16,6 +17,13 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private final PostService postService;
+
+    @GetMapping
+    public ResponseEntity<PostListResponseDto> getPosts() {
+        PostListResponseDto result = postService.getPosts();
+
+        return ResponseEntity.ok().body(result);
+    }
 
     @PostMapping
     public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {
