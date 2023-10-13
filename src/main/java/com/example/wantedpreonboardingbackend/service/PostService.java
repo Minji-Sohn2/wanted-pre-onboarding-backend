@@ -36,6 +36,13 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
+    public PostDetailResponseDto getOnePost(Long postId) {
+        Post post = findPostById(postId);
+        Company company = post.getCompany();
+
+        return new PostDetailResponseDto(post, company);
+    }
+
     @Transactional
     public PostResponseDto updatePost(Long postId, PostUpdateDto postUpdateDto) {
         Post post = findPostById(postId);
