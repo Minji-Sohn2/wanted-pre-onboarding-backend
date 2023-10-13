@@ -1,6 +1,7 @@
 package com.example.wantedpreonboardingbackend.entity;
 
 import com.example.wantedpreonboardingbackend.dto.PostRequestDto;
+import com.example.wantedpreonboardingbackend.dto.PostUpdateDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,12 +15,15 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String companyId;
+
     @Column(nullable = false)
     private String position;
 
     private Long reward;
+
     @Column(nullable = false)
     private String details;
 
@@ -34,4 +38,11 @@ public class Post {
         this.skills = postRequestDto.getSkills();
     }
 
+    /* 서비스 메서드 */
+    public void update(PostUpdateDto postUpdateDto) {
+        this.position = postUpdateDto.getPosition();
+        this.reward = postUpdateDto.getReward();
+        this.details = postUpdateDto.getDetails();
+        this.skills = postUpdateDto.getSkills();
+    }
 }
