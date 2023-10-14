@@ -20,8 +20,10 @@ public class PostService {
     private final CompanyRepository companyRepository;
 
     public PostListResponseDto getPosts() {
-        List<PostCompanyDto> postList = postRepository.findAll().stream()
-                .map(PostCompanyDto::new).toList();
+        List<PostCompanyDto> postList = postRepository.findAll()
+                .stream()
+                .map(PostCompanyDto::new)
+                .toList();
 
         return new PostListResponseDto(postList);
     }
@@ -58,6 +60,15 @@ public class PostService {
         post.update(postUpdateDto);
 
         return new PostResponseDto(post);
+    }
+
+    public PostListResponseDto searchPostByKeyword(String keyword) {
+        List<PostCompanyDto> postList = postRepository.findAllByKeyword(keyword)
+                .stream()
+                .map(PostCompanyDto::new)
+                .toList();
+
+        return new PostListResponseDto(postList);
     }
 
     public void deletePost(Long postId) {

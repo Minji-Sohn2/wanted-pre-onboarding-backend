@@ -50,4 +50,11 @@ public class PostController {
 
         return ResponseEntity.ok().body(new ApiResponseDto("공고 삭제 성공", HttpStatus.OK.value()));
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<PostListResponseDto> searchPostByKeyword(@RequestParam String search) {
+        PostListResponseDto result = postService.searchPostByKeyword(search);
+
+        return ResponseEntity.ok().body(result);
+    }
 }
