@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +41,14 @@ public class PostService {
         Post post = findPostById(postId);
         Company company = post.getCompany();
 
-        return new PostDetailResponseDto(post, company);
+        List<Long> postIdList = company.getPosts()
+                .stream()
+                .map(Post::getId)
+                .collect(Collectors.toList());
+
+        postIdList.remove(postId);
+
+        return new PostDetailResponseDto(post, company, postIdList);
     }
 
     @Transactional

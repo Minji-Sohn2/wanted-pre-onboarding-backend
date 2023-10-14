@@ -19,9 +19,9 @@ public class PostDetailResponseDto {
     private String skills;
     private String details;
 
-    private List<Long> idList;
+    private List<Long> postIdList;
 
-    public PostDetailResponseDto(Post post, Company company) {
+    public PostDetailResponseDto(Post post, Company company, List<Long> postIdList) {
         this.postId = post.getId();
         this.companyName = post.getCompany().getCompanyName();
         this.country = post.getCompany().getCountry();
@@ -30,7 +30,6 @@ public class PostDetailResponseDto {
         this.reward = post.getReward();
         this.skills = post.getSkills();
         this.details = post.getDetails();
-        this.idList = company.getPosts().stream()
-                .map(Post::getId).toList();
+        this.postIdList = postIdList;
     }
 }
