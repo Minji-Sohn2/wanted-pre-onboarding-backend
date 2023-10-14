@@ -1,6 +1,5 @@
 package com.example.wantedpreonboardingbackend.entity;
 
-import com.example.wantedpreonboardingbackend.dto.company.CompanyRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,10 +28,4 @@ public class Company {
     @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE)
     private List<Post> posts;
 
-    /* 생성자 */
-    public Company(CompanyRequestDto companyRequestDto) {
-        this.companyName = companyRequestDto.getCompanyName();
-        this.country = companyRequestDto.getCountry();
-        this.region = companyRequestDto.getRegion();
-    }
 }
